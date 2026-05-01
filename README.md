@@ -1,12 +1,9 @@
 # predictive-maintenance-ml
 ## Követelmények
 
-- Python 3.12
-- tensorflow
-- pandas
-- numpy
-- scikit-learn
+Python 3.12
 
 ## Futtatás
 
+pip install -r requirements.txt
 python main.py 
