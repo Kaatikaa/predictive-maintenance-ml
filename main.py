@@ -41,7 +41,6 @@ model = keras.models.Sequential(name = 'Modell')
 model.add(keras.layers.Input(shape=(8,)))
 model.add(keras.layers.Dense(16, activation='relu', name = 'hidden-layer1'))
 model.add(keras.layers.Dense(8, activation='relu', name = 'hidden-layer2'))
-#model.add(keras.layers.Dropout(0.2, name = 'dropout'))
 model.add(keras.layers.Dense(1, activation='sigmoid', name = 'output'))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
@@ -51,5 +50,5 @@ model_history.history
 
 #kiértékelés teszt adatokon
 loss, accuracy = model.evaluate(x_test, y_test, batch_size=32)
-print(f"Test Loss: {loss*100:.2f}%")
+print(f"Test Loss: {loss*100:.4f}")
 print(f"Test Accuracy: {accuracy*100:.2f}%")
