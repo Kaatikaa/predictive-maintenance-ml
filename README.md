@@ -5,6 +5,6 @@ Python 3.12
 
 ## Futtatás
 
-pip install -r requirements.txt
+py -3.12 -m pip install -r requirements.txt
 
-python main.py 
+py -3.12 main.py
