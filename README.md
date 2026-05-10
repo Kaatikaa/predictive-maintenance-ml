@@ -1,6 +1,6 @@
 # predictive-maintenance-ml
 
-rediktív karbantartási projekt többrétegű perceptron (MLP) neurális hálózat alkalmazásával TensorFlow/Keras környezetben. 
+Prediktív karbantartási projekt többrétegű perceptron (MLP) neurális hálózat alkalmazásával TensorFlow/Keras környezetben. 
 A modell az AI4I 2020 Predictive Maintenance Dataset szenzoradatai alapján ipari gépek meghibásodását képes előrejelezni.
 Legjobb elért teszt pontosság: 98,71%
 
