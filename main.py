@@ -45,7 +45,6 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 
 #tanítás
 model_history = model.fit(x_train, y_train, batch_size=32, epochs=100, validation_split=0.1, shuffle=True, verbose=0)
-model_history.history
 
 #kiértékelés teszt adatokon
 loss, accuracy = model.evaluate(x_test, y_test, batch_size=32)
