@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import confusion_matrix
 import tensorflow as tf
 from tensorflow import keras
 
@@ -48,11 +49,22 @@ model_history = model.fit(x_train, y_train, batch_size=32, epochs=100, validatio
 
 #kiértékelés teszt adatokon
 loss, accuracy = model.evaluate(x_test, y_test, batch_size=32)
+predictions = model.predict(x_test)
+cm = confusion_matrix(y_test, predictions.round())
+
+fn = cm[0][1]
+fp = cm[1][0]
+total_errors = fn + fp
+fn_percentage = (fn/total_errors)*100
+fp_percentage = (fp/total_errors)*100
+
 print(f"Test Loss: {loss:.4f}")
 print(f"Test Accuracy: {accuracy*100:.2f}%")
+print(f"False Negatives: {fn}pcs, {fn_percentage:.2f}%")
+print(f"False Positives: {fp}pcs, {fp_percentage:.2f}%")
 
 #user input kérése
-answer = input("Szeretne megadni saját adatokat? (y/n): ").lower()
+answer = input("Try with your own data? (y/n): ").lower()
 if answer == "y":
     machine_type = input("Type (L, M, H): ").upper()
     air_temp = float(input("Air temperature [K]: "))
