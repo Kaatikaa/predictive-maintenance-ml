@@ -52,3 +52,37 @@ model_history.history
 loss, accuracy = model.evaluate(x_test, y_test, batch_size=32)
 print(f"Test Loss: {loss:.4f}")
 print(f"Test Accuracy: {accuracy*100:.2f}%")
+
+#user input kérése
+answer = input("Szeretne megadni saját adatokat? (y/n): ").lower()
+if answer == "y":
+    machine_type = input("Type (L, M, H): ").upper()
+    air_temp = float(input("Air temperature [K]: "))
+    process_temp = float(input("Process temperature [K]: "))
+    rotational_speed = float(input("Rotational speed [rpm]: "))
+    torque = float(input("Torque [Nm]: "))
+    tool_wear = float(input("Tool wear [min]: "))
+
+    type_L = 1 if machine_type == 'L' else 0
+    type_M = 1 if machine_type == 'M' else 0
+    type_H = 1 if machine_type == 'H' else 0
+
+    
+    user_df = pd.DataFrame([{
+        'Air temperature [K]': air_temp,
+        'Process temperature [K]': process_temp,
+        'Rotational speed [rpm]': rotational_speed,
+        'Torque [Nm]': torque,
+        'Tool wear [min]': tool_wear,
+        'Type_H': type_H,
+        'Type_L': type_L,
+        'Type_M': type_M
+    }])
+
+    user_df[scale_columns] = scaler.transform(user_df[scale_columns])
+
+    prediction = model.predict(user_df)
+
+    probability = prediction[0][0] * 100
+
+    print(f"Meghibásodás valószínűsége: {probability:.2f}%")
